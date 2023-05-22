@@ -2,7 +2,6 @@ import {Link, useParams} from "react-router-dom";
 
 export function WelcomeComponent() {
     const {username} = useParams();
-    console.log(username);
 
     return (
         <div className="WelcomeComponent">
