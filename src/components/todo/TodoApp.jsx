@@ -5,14 +5,17 @@ import {BrowserRouter, Route, Routes, useNavigate, useParams} from "react-router
 export default function TodoApp() {
     return (
         <div className="TodoApp">
+            <HeaderComponent/>
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<LoginComponent/>}></Route>
                     <Route path="/login" element={<LoginComponent/>}></Route>
                     <Route path="/welcome/:username" element={<WelcomeComponent/>}></Route>
+                    <Route path="/logout" element={<LogoutComponent/>}></Route>
                     <Route path="*" element={<ErrorComponent/>}></Route>
                 </Routes>
             </BrowserRouter>
+            <FooterComponent/>
         </div>
 
     );
@@ -89,6 +92,33 @@ function ErrorComponent() {
         <div className="ErrorComponent">
             <h1>We are working really hard</h1>
             <div>Apologize for 404.</div>
+        </div>
+    );
+}
+
+function HeaderComponent() {
+    return (
+        <div className="header">
+            Header
+            <hr/>
+        </div>
+    );
+}
+
+function FooterComponent() {
+    return (
+        <div className="footer">
+            <hr/>
+            Footer
+        </div>
+    );
+}
+
+function LogoutComponent() {
+    return (
+        <div className="LogoutComponent">
+            <h1>You are logged out</h1>
+            <div>Thank You for using 'ToDo' app</div>
         </div>
     );
 }
