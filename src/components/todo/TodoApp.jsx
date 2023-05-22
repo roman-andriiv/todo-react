@@ -82,9 +82,9 @@ function WelcomeComponent() {
 
     return (
         <div className="WelcomeComponent">
-            <h1>Welcome to the "ToDo" ReactJS application</h1>
+            <h1>Welcome to the "ToDos" ReactJS application</h1>
             <div>You are logged in as {username}</div>
-            <div>Your ToDoes is <Link to="/todos">here</Link></div>
+            <div>Your ToDos are <Link to="/todos">here</Link></div>
         </div>
     );
 }
@@ -120,7 +120,7 @@ function LogoutComponent() {
     return (
         <div className="LogoutComponent">
             <h1>You are logged out</h1>
-            <div>Thank You for using 'ToDo' app</div>
+            <div>Thank You for using 'ToDos' app</div>
         </div>
     );
 }
@@ -134,10 +134,10 @@ function ListTodosComponent() {
         {id: 3, description: 'Test3', done: false, targetDate: targetDate},
     ];
     return (
-        <div className="ListTodoComponent">
+        <div className="container">
             <h1>Things You want to do:</h1>
             <div>
-                <table>
+                <table className="table">
                     <thead>
                     <tr>
                         <td>ID</td>
