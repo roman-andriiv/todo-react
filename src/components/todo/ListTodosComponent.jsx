@@ -1,11 +1,23 @@
+import {useEffect, useState} from "react";
+import {getAllTodosForUser} from "./api/TodoApiService";
+
 export function ListTodosComponent() {
     const today = new Date();
     const targetDate = new Date(today.getFullYear() + 12, today.getMonth(), today.getDay());
-    const todos = [
-        {id: 1, description: 'Test1', done: false, targetDate: targetDate},
-        {id: 2, description: 'Test2', done: false, targetDate: targetDate},
-        {id: 3, description: 'Test3', done: false, targetDate: targetDate},
-    ];
+
+    const [todos, setTodos] = useState([]);
+
+    useEffect(() => refreshTodos, []);
+
+    function refreshTodos() {
+        getAllTodosForUser('andriiv')
+            .then(response => {
+                setTodos(response.data);
+            })
+            .catch(error => console.log(error));
+
+    }
+
     return (
         <div className="container">
             <h1>Things You want to do:</h1>
@@ -27,7 +39,7 @@ export function ListTodosComponent() {
                                     <td>{todo.id}</td>
                                     <td>{todo.description}</td>
                                     <td>{todo.done.toString()}</td>
-                                    <td>{todo.targetDate.toDateString()}</td>
+                                    <td>{todo.targetDate.toString()}</td>
                                 </tr>
                             )
                         )
