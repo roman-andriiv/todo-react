@@ -1,13 +1,13 @@
-import {Link} from "react-router-dom";
-import {useAuth} from "./security/AuthContext";
+import {Link} from "react-router-dom"
+import {useAuth} from "./security/AuthContext"
 
 export function HeaderComponent() {
 
-    const authContext = useAuth();
-    const isAuthenticated = authContext.isAuthenticated;
+    const authContext = useAuth()
+    const isAuthenticated = authContext.isAuthenticated
 
     function logout() {
-        authContext.logout();
+        authContext.logout()
     }
 
     return (
@@ -42,5 +42,5 @@ export function HeaderComponent() {
 
             </div>
         </header>
-    );
+    )
 }

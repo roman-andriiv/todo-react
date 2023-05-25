@@ -1,32 +1,32 @@
-import {useState} from "react";
-import {useNavigate} from "react-router-dom";
-import {useAuth} from "./security/AuthContext";
+import {useState} from "react"
+import {useNavigate} from "react-router-dom"
+import {useAuth} from "./security/AuthContext"
 
 export function LoginComponent() {
 
-    const [username, setUsername] = useState('andriiv');
-    const [password, setPassword] = useState('');
+    const [username, setUsername] = useState('andriiv')
+    const [password, setPassword] = useState('')
 
-    const [showErrorMessage, setShowErrorMessage] = useState(false);
+    const [showErrorMessage, setShowErrorMessage] = useState(false)
 
-    const navigate = useNavigate();
+    const navigate = useNavigate()
 
-    const authContext = useAuth();
+    const authContext = useAuth()
 
 
     function handleUsernameChange(event) {
-        setUsername(event.target.value);
+        setUsername(event.target.value)
     }
 
     function handlePasswordChange(event) {
-        setPassword(event.target.value);
+        setPassword(event.target.value)
     }
 
     function handleSubmit() {
         if (authContext.login(username, password)) {
-            navigate(`/welcome/${username}`);
+            navigate(`/welcome/${username}`)
         } else {
-            setShowErrorMessage(true);
+            setShowErrorMessage(true)
         }
     }
 
@@ -49,5 +49,5 @@ export function LoginComponent() {
                 </div>
             </div>
         </div>
-    );
+    )
 }

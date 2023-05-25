@@ -1,11 +1,11 @@
-import {Link, useParams} from "react-router-dom";
-import axios from "axios";
+import {Link, useParams} from "react-router-dom"
+import axios from "axios"
 
 export function WelcomeComponent() {
-    const {username} = useParams();
+    const {username} = useParams()
 
     function callHelloWorld() {
-        axios.get('http://localhost:8080/');
+        axios.get('http://localhost:8080/')
     }
 
     return (
@@ -17,5 +17,5 @@ export function WelcomeComponent() {
                 <button className="btn-success btn m-5" onClick={callHelloWorld}> Call Hello World</button>
             </div>
         </div>
-    );
+    )
 }

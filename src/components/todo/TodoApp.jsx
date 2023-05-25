@@ -1,20 +1,20 @@
-import "./TodoApp.css";
-import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
-import {HeaderComponent} from "./HeaderComponent";
-import {LoginComponent} from "./LoginComponent";
-import {WelcomeComponent} from "./WelcomeComponent";
-import {ListTodosComponent} from "./ListTodosComponent";
-import {LogoutComponent} from "./LogoutComponent";
-import {ErrorComponent} from "./ErrorComponent";
-import {AuthProvider, useAuth} from "./security/AuthContext";
-import TodoComponent from "./TodoComponent";
+import "./TodoApp.css"
+import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom"
+import {HeaderComponent} from "./HeaderComponent"
+import {LoginComponent} from "./LoginComponent"
+import {WelcomeComponent} from "./WelcomeComponent"
+import {ListTodosComponent} from "./ListTodosComponent"
+import {LogoutComponent} from "./LogoutComponent"
+import {ErrorComponent} from "./ErrorComponent"
+import {AuthProvider, useAuth} from "./security/AuthContext"
+import TodoComponent from "./TodoComponent"
 
 function AuthenticatedRoute({children}) {
-    const authContext = useAuth();
+    const authContext = useAuth()
     if (authContext.isAuthenticated) {
-        return children;
+        return children
     }
-    return <Navigate to="/"/>;
+    return <Navigate to="/"/>
 }
 
 export default function TodoApp() {
@@ -42,5 +42,5 @@ export default function TodoApp() {
             </AuthProvider>
         </div>
 
-    );
+    )
 }
