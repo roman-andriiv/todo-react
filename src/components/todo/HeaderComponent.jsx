@@ -11,13 +11,13 @@ export function HeaderComponent() {
     }
 
     return (
-        <header className="border-bottom border-info border-5 mb-5 p-2">
+        <header className="border-bottom border-dark border-5 mb-5 p-2">
             <div className="container">
                 <div className="row">
                     <nav className="navbar navbar-expand-lg">
-                        <a className="navbar-brand ms-2 fs-2 fw-bold text-info"
+                        <a className="navbar-brand ms-2 fs-2 fw-bold"
                            href="https://github.com/roman-andriiv/todo-react-app">
-                            ToDosWithReact (Github source) </a>
+                            ToDos (Github source) </a>
                         <div className="collapse navbar-collapse">
                             <ul className="navbar-nav">
                                 <li className="nav-item fs-5">
