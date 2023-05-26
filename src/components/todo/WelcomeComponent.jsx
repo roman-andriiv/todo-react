@@ -1,10 +1,12 @@
 import {Link, useParams} from "react-router-dom"
 import axios from "axios"
+import {useAuth} from "./security/AuthContext"
 
 export function WelcomeComponent() {
     const {username} = useParams()
+    const authContext = useAuth()
 
-    function callHelloWorld() {
+    function callWelcome() {
         axios.get('http://localhost:8080/')
     }
 
@@ -14,7 +16,7 @@ export function WelcomeComponent() {
             <div>You are logged in as {username}</div>
             <div>Your ToDos are <Link to="/todos">here</Link></div>
             <div>
-                <button className="btn-success btn m-5" onClick={callHelloWorld}> Call Hello World</button>
+                <button className="btn-success btn m-5" onClick={callWelcome}> Call Welcome</button>
             </div>
         </div>
     )
