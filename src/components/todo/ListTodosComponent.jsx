@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react"
-import {deleteTodoApi, getAllTodosForUserApi} from "./api/TodoApiService"
+import {deleteTodoApi, getAllTodosForUserApi} from "./api/TodoService"
 import {useAuth} from "./security/AuthContext"
 import {useNavigate} from "react-router-dom"
 
