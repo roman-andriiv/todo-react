@@ -22,8 +22,8 @@ export function LoginComponent() {
         setPassword(event.target.value)
     }
 
-    function handleSubmit() {
-        if (authContext.login(username, password)) {
+    async function handleSubmit() {
+        if (await authContext.login(username, password)) {
             navigate(`/welcome/${username}`)
         } else {
             setShowErrorMessage(true)
@@ -45,7 +45,7 @@ export function LoginComponent() {
                     <input type="password" name="password" value={password} onChange={handlePasswordChange}/>
                 </div>
                 <div>
-                    <button type="button" name="login" onClick={handleSubmit}>login</button>
+                    <button className="btn btn-info" type="button" name="login" onClick={handleSubmit}>login</button>
                 </div>
             </div>
         </div>
