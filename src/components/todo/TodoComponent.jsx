@@ -8,13 +8,17 @@ import moment from "moment"
 export default function TodoComponent() {
 
     const {id} = useParams()
-    const authContext = useAuth()
-    const username = authContext.username
+
     const [description, setDescription] = useState('')
     const [targetDate, setTargetDate] = useState('')
 
-    useEffect(() => getTodos(), [id])
+    const authContext = useAuth()
     const navigate = useNavigate()
+
+    const username = authContext.username
+
+    useEffect(() =>
+        getTodos(), [id])
 
 
     function getTodos() {
