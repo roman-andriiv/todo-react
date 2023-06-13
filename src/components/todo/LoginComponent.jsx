@@ -5,7 +5,7 @@ import {useAuth} from "./security/AuthContext"
 export function LoginComponent() {
 
     const [username, setUsername] = useState('andriiv')
-    const [password, setPassword] = useState('')
+    const [password, setPassword] = useState('password')
 
     const [showErrorMessage, setShowErrorMessage] = useState(false)
 
@@ -45,7 +45,7 @@ export function LoginComponent() {
                     <input type="password" name="password" value={password} onChange={handlePasswordChange}/>
                 </div>
                 <div>
-                    <button className="btn btn-info" type="button" name="login" onClick={handleSubmit}>login</button>
+                    <button className="btn btn-primary" type="button" name="login" onClick={handleSubmit}>login</button>
                 </div>
             </div>
         </div>
