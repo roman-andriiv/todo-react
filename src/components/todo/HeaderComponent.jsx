@@ -11,7 +11,7 @@ export function HeaderComponent() {
     }
 
     return (
-        <header className="border-bottom border-dark border-5 mb-5 p-2">
+        <header className="border-bottom border-dark border-5 mb-5 p-2 navbar-dark bg-primary navbar-expand-lg">
             <div className="container">
                 <div className="row">
                     <nav className="navbar navbar-expand-lg">

@@ -11,6 +11,7 @@ export default function TodoComponent() {
 
     const [description, setDescription] = useState('')
     const [targetDate, setTargetDate] = useState('')
+    const [done, setDone] = useState('')
 
     const authContext = useAuth()
     const navigate = useNavigate()
@@ -27,6 +28,7 @@ export default function TodoComponent() {
                 .then(response => {
                     setDescription(response.data.description)
                     setTargetDate(response.data.targetDate)
+                    setDone(response.data.done)
                 })
                 .catch(error => console.log(error))
         }
@@ -39,11 +41,11 @@ export default function TodoComponent() {
             username: username,
             description: values.description,
             targetDate: values.targetDate,
-            done: false
+            done: values.done
         }
         console.log(todo)
 
-        if (id === -1) {
+        if (id == -1) {
             createTodoApi(username, todo)
                 .then(response => {
                     console.log(response)
@@ -68,6 +70,9 @@ export default function TodoComponent() {
         if (values.targetDate == null || values.targetDate === '' || !moment(values.targetDate).isValid()) {
             errors.targetDate = 'Enter a target date'
         }
+        // if (values.done !== true || values.done !== false) {
+        //     errors.done = `Enter \'true\' or \'false\'`
+        // }
         return errors
     }
 
@@ -75,7 +80,7 @@ export default function TodoComponent() {
         <div className="container">
             <h1>Enter Todo details</h1>
             <div>
-                <Formik initialValues={{description, targetDate}}
+                <Formik initialValues={{description, targetDate, done}}
                         enableReinitialize={true}
                         onSubmit={onSubmit}
                         validate={validate}
@@ -86,6 +91,7 @@ export default function TodoComponent() {
                             <Form>
                                 <ErrorMessage name="description" component="div" className="alert alert-warning"/>
                                 <ErrorMessage name="targetDate" component="div" className="alert alert-warning"/>
+                                <ErrorMessage name="done" component="div" className="alert alert-warning"/>
                                 <fieldset className="form-group">
                                     <label>Description</label>
                                     <Field type="text" className="form-control" name="description"/>
@@ -93,6 +99,10 @@ export default function TodoComponent() {
                                 <fieldset className="form-group">
                                     <label>Target Date</label>
                                     <Field type="date" className="form-control" name="targetDate"/>
+                                </fieldset>
+                                <fieldset className="form-group">
+                                    <label>Is Done? (true/false)</label>
+                                    <Field type="boolean" className="form-control" name="done"/>
                                 </fieldset>
                                 <div>
                                     <button className="btn btn-success m-3" type="submit">Save</button>
