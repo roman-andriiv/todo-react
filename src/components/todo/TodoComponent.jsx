@@ -2,8 +2,9 @@ import {useNavigate, useParams} from "react-router-dom"
 import {createTodoApi, getTodoApi, updateTodoApi} from "./api/TodoService"
 import {useAuth} from "./security/AuthContext"
 import {useEffect, useState} from "react"
-import {ErrorMessage, Field, Form, Formik} from "formik"
 import moment from "moment"
+import Button from "@mui/material/Button"
+import {ErrorMessage, Field, Form, Formik} from "formik"
 
 export default function TodoComponent() {
 
@@ -105,12 +106,25 @@ export default function TodoComponent() {
                                     <Field type="boolean" className="form-control" name="done"/>
                                 </fieldset>
                                 <div>
-                                    <button className="btn btn-success m-3" type="submit">Save</button>
+                                    <Button type="submit" variant="contained">Save</Button>
                                 </div>
+                                {/*<Stack spacing={2} mt={1}>*/}
+                                {/*    <TextField label="Descriprion" name="desc"*/}
+                                {/*               autoFocus*/}
+                                {/*               variant="standard"/>*/}
+                                {/*    <TextField label="Target Date" name="targetDate"*/}
+                                {/*               autoFocus*/}
+                                {/*               variant="standard" type={"date"}/>*/}
+                                {/*    <TextField label="Done? true/false" name="Done"*/}
+                                {/*               autoFocus*/}
+                                {/*               variant="standard"/>*/}
+                                {/*</Stack>*/}
+
                             </Form>
                         )
                     }
                 </Formik>
+
             </div>
         </div>
     )
