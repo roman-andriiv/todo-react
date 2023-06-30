@@ -19,8 +19,7 @@ export default function TodoComponent() {
 
     const username = authContext.username
 
-    useEffect(() =>
-        getTodos(), [id])
+    useEffect(() => getTodos(), [id])
 
 
     function getTodos() {
@@ -77,55 +76,31 @@ export default function TodoComponent() {
         return errors
     }
 
-    return (
-        <div className="container">
-            <h1>Enter Todo details</h1>
-            <div>
-                <Formik initialValues={{description, targetDate, done}}
-                        enableReinitialize={true}
-                        onSubmit={onSubmit}
-                        validate={validate}
-                        validateOnChange={false}
-                        validateOnBlur={false}>
-                    {
-                        (props) => (
-                            <Form>
-                                <ErrorMessage name="description" component="div" className="alert alert-warning"/>
-                                <ErrorMessage name="targetDate" component="div" className="alert alert-warning"/>
-                                <ErrorMessage name="done" component="div" className="alert alert-warning"/>
-                                <fieldset className="form-group">
-                                    <label>Description</label>
-                                    <Field type="text" className="form-control" name="description"/>
-                                </fieldset>
-                                <fieldset className="form-group">
-                                    <label>Target Date</label>
-                                    <Field type="date" className="form-control" name="targetDate"/>
-                                </fieldset>
-                                <fieldset className="form-group">
-                                    <label>Is Done? (true/false)</label>
-                                    <Field type="boolean" className="form-control" name="done"/>
-                                </fieldset>
-                                <div>
-                                    <Button type="submit" variant="contained">Save</Button>
-                                </div>
-                                {/*<Stack spacing={2} mt={1}>*/}
-                                {/*    <TextField label="Descriprion" name="desc"*/}
-                                {/*               autoFocus*/}
-                                {/*               variant="standard"/>*/}
-                                {/*    <TextField label="Target Date" name="targetDate"*/}
-                                {/*               autoFocus*/}
-                                {/*               variant="standard" type={"date"}/>*/}
-                                {/*    <TextField label="Done? true/false" name="Done"*/}
-                                {/*               autoFocus*/}
-                                {/*               variant="standard"/>*/}
-                                {/*</Stack>*/}
+    return (<div className="container">
+        <h1>Enter Todo details</h1>
+        <div>
+            <Formik initialValues={{description, targetDate, done}}
+                    enableReinitialize={true}
+                    onSubmit={onSubmit}
+                    validate={validate}
+                    validateOnChange={false}
+                    validateOnBlur={false}>
+                {(props) => (
+                    <Form>
+                        <ErrorMessage name="description" component="div" className="alert alert-warning"/>
+                        <ErrorMessage name="targetDate" component="div" className="alert alert-warning"/>
+                        <ErrorMessage name="done" component="div" className="alert alert-warning"/>
+                        <Field type="text" className="form-control mb-3" name="description" placeholder="Description"/>
+                        <Field type="" className="form-control mb-3" name="targetDate" placeholder="Target date"/>
+                        <Field type="boolean" className="form-control mb-3" name="done"
+                               placeholder={"Is Done? (true/false)"}/>
+                        <div>
+                            <Button type="submit" variant="contained">Save</Button>
+                        </div>
+                    </Form>
+                )}
+            </Formik>
 
-                            </Form>
-                        )
-                    }
-                </Formik>
-
-            </div>
         </div>
-    )
+    </div>)
 }
