@@ -1,6 +1,7 @@
 import {useState} from "react"
 import {useNavigate} from "react-router-dom"
 import {useAuth} from "./security/AuthContext"
+import Button from "@mui/material/Button"
 
 export function LoginComponent() {
 
@@ -45,7 +46,8 @@ export function LoginComponent() {
                     <input type="password" name="password" value={password} onChange={handlePasswordChange}/>
                 </div>
                 <div>
-                    <button className="btn btn-primary" type="button" name="login" onClick={handleSubmit}>login</button>
+                    {/*<button className="btn btn-primary" type="button" name="login" onClick={handleSubmit}>login</button>*/}
+                    <Button variant="contained" className="btn-success btn m-5" onClick={handleSubmit}>login</Button>
                 </div>
             </div>
         </div>

@@ -17,9 +17,6 @@ export function WelcomeComponent() {
         <div className="WelcomeComponent">
             <h1>Welcome to the "ToDos" ReactJS application</h1>
             <div>You are logged in as "{username}"</div>
-            {/*          <div>
-                <button className="btn-success btn m-5" onClick={callWelcome}>Open my ToDo List</button>
-            </div>*/}
             <Button variant="contained" className="btn-success btn m-5" onClick={callWelcome}>My Todos</Button>
         </div>
     )
