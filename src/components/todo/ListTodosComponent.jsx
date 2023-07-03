@@ -3,7 +3,7 @@ import {deleteTodoApi, getAllTodosForUserApi} from "./api/TodoService"
 import {useAuth} from "./security/AuthContext"
 import {useNavigate} from "react-router-dom"
 import Button from '@mui/material/Button'
-import {IconButton} from "@mui/material"
+import {IconButton, Snackbar} from "@mui/material"
 import DeleteIcon from '@mui/icons-material/Delete'
 import EditIcon from '@mui/icons-material/Edit'
 
@@ -15,6 +15,7 @@ export function ListTodosComponent() {
     const [message, setMessage] = useState(null)
     useEffect(() => refreshTodos(), [])
     const navigate = useNavigate()
+    const [open, setOpen] = useState(false)
 
     function refreshTodos() {
         getAllTodosForUserApi(username)
@@ -27,12 +28,16 @@ export function ListTodosComponent() {
 
     function deleteTodo(id) {
         console.log(id)
-        deleteTodoApi(username, id)
-            .then(() => {
-                setMessage(`Delete of Todo with id = ${id} successful`)
-                refreshTodos()
-            })
-            .catch(error => console.log(error))
+        if (window.confirm("Are you sure to delete?")) {
+            deleteTodoApi(username, id)
+                .then(() => {
+                    // setMessage(`Delete of Todo with id = ${id} successful`)
+                    setOpen(true)
+                    refreshTodos()
+                })
+                .catch(error => console.log(error))
+        }
+
     }
 
     function updateTodo(id) {
@@ -80,6 +85,12 @@ export function ListTodosComponent() {
                     </tbody>
                 </table>
             </div>
-
-        </div>)
+            <Snackbar
+                open={open}
+                autoHideDuration={2000}
+                onClose={() => setOpen(false)}
+                message="Todo deleted"
+            />
+        </div>
+    )
 }

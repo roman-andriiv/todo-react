@@ -71,7 +71,7 @@ export default function TodoComponent() {
             errors.targetDate = 'Enter a target date'
         }
         // if (values.done !== true || values.done !== false) {
-        //     errors.done = `Enter \'true\' or \'false\'`
+        //     errors.done = `Enter true or false`
         // }
         return errors
     }
@@ -91,8 +91,11 @@ export default function TodoComponent() {
                         <ErrorMessage name="targetDate" component="div" className="alert alert-warning"/>
                         <ErrorMessage name="done" component="div" className="alert alert-warning"/>
                         <Field type="text" className="form-control mb-3" name="description" placeholder="Description"/>
-                        <Field type="" className="form-control mb-3" name="targetDate" placeholder="Target date"/>
-                        <Field type="boolean" className="form-control mb-3" name="done"
+                        <fieldset>
+                            <Field type="date" className="form-control mb-3" name="targetDate"
+                                   placeholder="Target date"/>
+                        </fieldset>
+                        <Field className="form-control mb-3" name="done"
                                placeholder={"Is Done? (true/false)"}/>
                         <div>
                             <Button type="submit" variant="contained">Save</Button>
