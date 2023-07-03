@@ -6,6 +6,7 @@ import Button from '@mui/material/Button'
 import {IconButton, Snackbar} from "@mui/material"
 import DeleteIcon from '@mui/icons-material/Delete'
 import EditIcon from '@mui/icons-material/Edit'
+import {DataGrid} from "@mui/x-data-grid"
 
 export function ListTodosComponent() {
 
@@ -49,48 +50,71 @@ export function ListTodosComponent() {
 
     }
 
-    return (
-        <div className="container">
-            <Button variant="contained" className="btn btn-success m-5" onClick={addTodo}> New ToDo</Button>
-            {message && <div className="alert alert-warning">{message}</div>}
-            <div>
-                <table className="table">
-                    <thead>
-                    <tr>
-                        <th>Description</th>
-                        <th>Is done?</th>
-                        <th>Target Date</th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {todos.map(todo => (
-                        <tr key={todo.id}>
-                            <td>{todo.description}</td>
-                            <td>{todo.done.toString()}</td>
-                            <td>{todo.targetDate}</td>
-                            <td>
-                                <IconButton onClick={() => deleteTodo(todo.id)}>
-                                    <DeleteIcon color="error"/>
-                                </IconButton>
-                            </td>
-                            <td>
-                                <IconButton onClick={() => updateTodo(todo.id)}>
-                                    <EditIcon color="primary"/>
-                                </IconButton>
-                            </td>
-                        </tr>
-                    ))}
-                    </tbody>
-                </table>
-            </div>
-            <Snackbar
-                open={open}
-                autoHideDuration={2000}
-                onClose={() => setOpen(false)}
-                message="Todo deleted"
-            />
+    const columns = [
+        {field: 'description', headerName: 'Description', width: 350,},
+        {field: 'done', headerName: 'Is Done', width: 350},
+        {field: 'targetDate', headerName: 'Target Date', width: 350},
+        {
+            field: 'edit', headerName: '', sortable: false, filterable: false,
+            renderCell: row => <IconButton onClick={() => updateTodo(row.id)}>
+                <EditIcon color="primary"/>
+            </IconButton>
+        },
+        {
+            field: 'delete', headerName: '', sortable: false, filterable: false,
+            renderCell: row => <IconButton onClick={() => deleteTodo(row.id)}>
+                <DeleteIcon color="error"/>
+            </IconButton>
+        }
+    ]
+
+    return (<div className="container">
+        <Button variant="contained" className="btn btn-success m-5" onClick={addTodo}> New ToDo</Button>
+        {message && <div className="alert alert-warning">{message}</div>}
+        <div style={{height: 500, width: '100%'}}>
+            <DataGrid
+                disableSelectionOnClick={true}
+                rows={todos}
+                columns={columns}
+                getRowId={row => row.id}/>
         </div>
-    )
+        {/*<div>*/}
+        {/*    <table className="table">*/}
+        {/*        <thead>*/}
+        {/*        <tr>*/}
+        {/*            <th>Description</th>*/}
+        {/*            <th>Is done?</th>*/}
+        {/*            <th>Target Date</th>*/}
+        {/*            <th></th>*/}
+        {/*            <th></th>*/}
+        {/*        </tr>*/}
+        {/*        </thead>*/}
+        {/*        <tbody>*/}
+        {/*        {todos.map(todo => (*/}
+        {/*            <tr key={todo.id}>*/}
+        {/*                <td>{todo.description}</td>*/}
+        {/*                <td>{todo.done.toString()}</td>*/}
+        {/*                <td>{todo.targetDate}</td>*/}
+        {/*                <td>*/}
+        {/*                    <IconButton onClick={() => deleteTodo(todo.id)}>*/}
+        {/*                        <DeleteIcon color="error"/>*/}
+        {/*                    </IconButton>*/}
+        {/*                </td>*/}
+        {/*                <td>*/}
+        {/*                    <IconButton onClick={() => updateTodo(todo.id)}>*/}
+        {/*                        <EditIcon color="primary"/>*/}
+        {/*                    </IconButton>*/}
+        {/*                </td>*/}
+        {/*            </tr>*/}
+        {/*        ))}*/}
+        {/*        </tbody>*/}
+        {/*    </table>*/}
+        {/*</div>*/}
+        <Snackbar
+            open={open}
+            autoHideDuration={2000}
+            onClose={() => setOpen(false)}
+            message="Todo deleted"
+        />
+    </div>)
 }
