@@ -6,7 +6,7 @@ import Button from '@mui/material/Button'
 import {IconButton, Snackbar} from "@mui/material"
 import DeleteIcon from '@mui/icons-material/Delete'
 import EditIcon from '@mui/icons-material/Edit'
-import {DataGrid} from "@mui/x-data-grid"
+import {DataGrid, gridClasses, GridToolbarContainer, GridToolbarExport} from "@mui/x-data-grid"
 
 export function ListTodosComponent() {
 
@@ -68,6 +68,15 @@ export function ListTodosComponent() {
         }
     ]
 
+    function CustomToolbar() {
+        return (
+            <GridToolbarContainer
+                className={gridClasses.toolbarContainer}>
+                <GridToolbarExport/>
+            </GridToolbarContainer>
+        )
+    }
+
     return (<div className="container">
         <Button variant="contained" className="btn btn-success m-5" onClick={addTodo}> New ToDo</Button>
         {message && <div className="alert alert-warning">{message}</div>}
@@ -76,7 +85,8 @@ export function ListTodosComponent() {
                 disableSelectionOnClick={true}
                 rows={todos}
                 columns={columns}
-                getRowId={row => row.id}/>
+                getRowId={row => row.id}
+                components={{Toolbar: CustomToolbar}}/>
         </div>
         {/*<div>*/}
         {/*    <table className="table">*/}

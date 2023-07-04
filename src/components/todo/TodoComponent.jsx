@@ -91,12 +91,8 @@ export default function TodoComponent() {
                         <ErrorMessage name="targetDate" component="div" className="alert alert-warning"/>
                         <ErrorMessage name="done" component="div" className="alert alert-warning"/>
                         <Field type="text" className="form-control mb-3" name="description" placeholder="Description"/>
-                        <fieldset>
-                            <Field type="date" className="form-control mb-3" name="targetDate"
-                                   placeholder="Target date"/>
-                        </fieldset>
-                        <Field className="form-control mb-3" name="done"
-                               placeholder={"Is Done? (true/false)"}/>
+                        <Field type="date" className="form-control mb-3" name="targetDate" placeholder="Target date"/>
+                        <Field className="form-control mb-3" name="done" placeholder={"Is Done? (true/false)"}/>
                         <div>
                             <Button type="submit" variant="contained">Save</Button>
                         </div>
